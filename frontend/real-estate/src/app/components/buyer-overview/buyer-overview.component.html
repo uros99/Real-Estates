@@ -1,0 +1,16 @@
+<div>
+    <div class="container">
+        <div class="header">
+            <button mat-raised-button color="primary" class="button" (click)="openFilterDialog()" [matTooltip]="'Filter'">
+                <mat-icon>filter_list</mat-icon>
+            </button>    
+        </div>
+        <div *ngFor="let realEstate of realEstates" class="realEstateDetails">
+            <app-real-estate-details
+            class="realEstateCard"
+            [realEstate] = "realEstate"
+            [moreDetailsFlag]="true"
+            ></app-real-estate-details>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<mat-table [dataSource]="realEstates">
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let request; columns: displayedColumns;"></mat-row>
+
+    <ng-container matColumnDef="Real Estate Name">
+        <mat-header-cell *matHeaderCellDef translate>Real Estate Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" >
+            <span [matTooltip]="element.name">
+                {{element.name | uppercase}}
+            </span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+        <mat-header-cell *matHeaderCellDef translate>Price</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <span [matTooltip]="element.price">
+                {{element.price | number: '1.2-2'}}
+            </span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Edit">
+        <mat-header-cell *matHeaderCellDef translate> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <mat-icon color="primary" class="clickable" [matTooltip]="'Edit Real Estate'" (click)="editRealEstate(element)">edit</mat-icon>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Sold">
+        <mat-header-cell *matHeaderCellDef translate> Sold </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <span *ngIf="!element.sold;else sold">
+                <mat-icon color="primary" class="clickable" [matTooltip]="'Sell Real Estate'" (click)="sellRealEstate(element)">euro_symbol</mat-icon>
+            </span>
+        </mat-cell>
+    </ng-container>
+</mat-table>
+<ng-template #sold>
+    <span class="sold">{{ 'SOLD' | uppercase }}</span>
+</ng-template>

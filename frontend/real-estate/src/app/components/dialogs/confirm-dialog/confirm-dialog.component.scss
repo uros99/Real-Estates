@@ -1,0 +1,27 @@
+.mat-dialog-content {
+    overflow: hidden;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-width: 450px;
+    padding-top: 10px;
+  }
+  
+  .container>* {
+    width: 100%;
+  }
+  
+  .mat-dialog-actions {
+    justify-content: flex-end;
+  }
+  
+  @media screen and (max-width: 630px) {
+    .container {
+        min-width: 65vw;
+        max-width: 65vw;
+        width: 65vw;
+    }
+  }
+  

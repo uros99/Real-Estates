@@ -1,0 +1,28 @@
+<mat-card-header>
+    <mat-card-title>Upload Images</mat-card-title>
+</mat-card-header>
+<mat-card-content>
+    <input
+        style="display: none"
+        type="file" (change)="importImages($event)"
+        multiple
+        #imageInput>
+        <button mat-raised-button color="primary" (click)="imageInput.click()">IMPORT IMAGES</button>
+        <span *ngIf="images.length > 0" class="message">
+            <button mat-button color="primary" (click)="clear()">EMPTY IMAGES</button>
+        </span><br>
+        <span class="message">
+            <p>{{message}}</p>
+        </span><br>
+        <table>
+            <tr>
+                <td *ngFor="let image of images">
+                    <img class="realEstateImage" src="{{image}}" alt="">
+                </td>
+            </tr>
+        </table>
+</mat-card-content>
+<mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="submit()">UPLOAD</button>
+    <button mat-button color="primary" (click)="close()">CLOSE</button>
+</mat-card-actions>

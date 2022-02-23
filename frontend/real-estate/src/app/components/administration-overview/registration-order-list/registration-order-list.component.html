@@ -1,0 +1,38 @@
+<mat-table [dataSource]="registrationOrders">
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let request; columns: displayedColumns;"></mat-row>
+
+    <ng-container matColumnDef="Customer Name">
+        <mat-header-cell *matHeaderCellDef translate>Customer Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.firstname | uppercase}} {{element.lastname | uppercase}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Username">
+        <mat-header-cell *matHeaderCellDef translate>Username</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="City">
+        <mat-header-cell *matHeaderCellDef translate> City </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Birth Date">
+        <mat-header-cell *matHeaderCellDef translate> Birth Date </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <span class="icon-prefix">
+                <i class="material-icons secondary-icon">today</i>
+                <span>{{element.birthDate | date}}</span>
+            </span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="More Info">
+        <mat-header-cell *matHeaderCellDef translate> More Info </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="clickable">
+            <a mat-icon-button color="primary" [matTooltip]="'Details'" (click)="openDetails(element)">
+                <mat-icon>info</mat-icon>
+            </a>
+        </mat-cell>
+    </ng-container>
+</mat-table>

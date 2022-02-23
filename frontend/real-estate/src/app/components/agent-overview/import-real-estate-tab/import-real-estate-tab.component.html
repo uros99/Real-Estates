@@ -1,0 +1,198 @@
+<mat-stepper orientation="vertical" #stepper>
+    <mat-step label="Import Document">
+        <input
+        style="display: none"
+        type="file" (change)="onFileChanged($event)"
+        #fileInput>
+        <button mat-raised-button color="primary" (click)="fileInput.click()">IMPORT REAL ESTATE</button>
+    </mat-step>
+    <mat-step label="Your Real Estate Info" class="realEstateForm">
+        <form [formGroup]="form">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field class="example-form-field" style="width: 100%;" appearance="fill">
+                            <mat-label>Real Estate Name</mat-label>
+                            <input matInput type="text" formControlName="name">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Type</mat-label>
+                            <mat-select formControlName="type" name="type">
+                                <mat-option *ngFor="let type of types" [value]="type.value">
+                                  {{type.viewValue}}
+                                </mat-option>
+                              </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>City</mat-label>
+                            <input matInput type="text" formControlName="city">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Municipality</mat-label>
+                            <input matInput type="text" formControlName="municipality">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Microlocation</mat-label>
+                            <input matInput type="text" formControlName="microlocation">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field class="example-form-field" style="width: 100%;" appearance="fill">
+                            <mat-label>Street</mat-label>
+                            <input matInput type="text" formControlName="street">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Area</mat-label>
+                            <input matInput type="text" formControlName="area">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Rooms</mat-label>
+                            <input matInput type="text" formControlName="rooms">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>State</mat-label>
+                            <mat-select formControlName="state" name="state">
+                              <mat-option *ngFor="let state of states" [value]="state.value">
+                                {{state.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Heating</mat-label>
+                            <mat-select formControlName="heating" name="heating" multiple>
+                              <mat-option *ngFor="let heat of heats" [value]="heat.value">
+                                {{heat.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field style="width: 100%;" class="example-form-field" appearance="fill">
+                            <mat-label>Construction Year</mat-label>
+                            <input matInput [matDatepicker]="datepicker" formControlName="constructionYear">
+                            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                            <mat-datepicker #datepicker>
+                                <mat-datepicker-actions>
+                                    <button mat-button matDatepickerCancel>Cancel</button>
+                                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                                </mat-datepicker-actions>
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Parking</mat-label>
+                            <mat-select formControlName="parking" name="parking">
+                              <mat-option [value]="true">
+                                YES
+                              </mat-option>
+                              <mat-option [value]="false">
+                                NO
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Floor</mat-label>
+                            <input matInput type="text" formControlName="floor">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Total floors</mat-label>
+                            <input matInput type="text" formControlName="totalFloors">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Monthly Utilities</mat-label>
+                            <input matInput type="text" formControlName="monthlyUtilities">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field class="example-form-field" style="width: 100%;" appearance="fill">
+                            <mat-label>Price</mat-label>
+                            <input matInput type="text" formControlName="price">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Characteristics</mat-label>
+                            <mat-select formControlName="characteristics" name="characteristics" multiple>
+                              <mat-option *ngFor="let characteristic of characteristicsArr" [value]="characteristic.value">
+                                {{characteristic.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <mat-form-field class="example-full-width" style="width: 100%;" appearance="fill">
+                            <mat-label>About</mat-label>
+                            <textarea matInput formControlName="about"></textarea>
+                          </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </mat-step>
+    <mat-step label="Upload Pictures">
+        <input
+        style="display: none"
+        type="file" (change)="importImages($event)"
+        multiple
+        #imageInput>
+        <button mat-raised-button color="primary" (click)="imageInput.click()">IMPORT IMAGES</button>
+        <span *ngIf="images.length > 0" class="message">
+            <button mat-button color="primary" (click)="clear()">EMPTY IMAGES</button>
+        </span><br>
+        <span *ngIf="message" class="message">
+            <p>{{message}}</p>
+        </span><br>
+        <table>
+            <tr>
+                <td *ngFor="let image of images">
+                    <img class="realEstateImage" src="{{image}}" alt="">
+                </td>
+            </tr>
+        </table>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>Are you done?</p>
+      <div>
+        <button mat-button color="primary" matStepperPrevious>BACK</button>
+        <button mat-raised-button color="primary" (click)="import()" [disabled]="form.invalid">DONE</button>
+      </div>
+    </mat-step>
+  </mat-stepper>

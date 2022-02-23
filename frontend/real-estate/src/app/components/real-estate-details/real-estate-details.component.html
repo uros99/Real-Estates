@@ -1,0 +1,37 @@
+<mat-card class="card">
+    <mat-card-content class="content">
+      <div>
+        <mat-card-title>{{realEstate?.name}}</mat-card-title>
+        <mat-card-subtitle>{{realEstate?.city}} - {{realEstate?.municipality}} - {{realEstate?.microlocation}}</mat-card-subtitle>
+        <table>
+          <tr>
+            <td>{{'square footage:' | uppercase}}</td>
+            <td>{{realEstate?.area}}</td>
+          </tr>
+          <tr>
+            <td>{{'number of rooms:' | uppercase}}</td>
+            <td>{{realEstate?.rooms}}</td>
+          </tr>
+          <tr>
+            <td>{{'total floors:' | uppercase}}</td>
+            <td>{{realEstate?.totalFloors}}</td>
+          </tr>
+          <tr>
+            <td>{{'price:' | uppercase}}</td>
+            <td>{{realEstate?.price | number: '1.2-2'}}</td>
+          </tr>
+          <tr>
+            <td>{{'average price per square meter:' | uppercase}}</td>
+            <td>{{avgPricePerMeter | number: '1.2-2'}}</td>
+          </tr>
+        </table>
+        Description:<p>{{realEstate?.about}}</p>
+      </div>
+      <div>
+        <img mat-card-image src="{{image}}">
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="moreDetails(realEstate)" [disabled]="!moreDetailsFlag" [matTooltip]="tooltip">MORE DETAILS</button>
+    </mat-card-actions>
+</mat-card>

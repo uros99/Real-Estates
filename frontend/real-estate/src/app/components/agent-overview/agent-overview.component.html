@@ -1,0 +1,28 @@
+<mat-tab-group 
+    mat-align-tabs="start"
+    [selectedIndex] = "activeTab"
+    >
+    <mat-tab label="My Real Estates">
+        <app-real-estate-list
+        [user]="user"
+        ></app-real-estate-list>
+    </mat-tab>
+    <mat-tab label="Add Real Estate">
+        <app-add-real-estate-tab
+        (listChange)="reload($event)"
+        [user]="user"
+        [agency]="agency"
+        ></app-add-real-estate-tab>
+    </mat-tab>
+    <mat-tab label="Import Real Estate">
+        <app-import-real-estate-tab
+        [user]="user"
+        (listChange)="reload($event)"
+        ></app-import-real-estate-tab>
+    </mat-tab>
+    <mat-tab label="My Information">
+        <app-my-information-tab
+        [user]="user"
+        ></app-my-information-tab>
+    </mat-tab>
+  </mat-tab-group>

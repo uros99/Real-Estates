@@ -1,0 +1,18 @@
+.icon-prefix {
+    display: flex;
+    align-items: center;
+
+    .secondary-icon {
+      font-size: 24px;
+      color: rgba(0,0,0,.36);
+    }
+
+    span {
+      display: block;
+      margin-left: 4px;
+    }
+  }
+
+  .clickable{
+    cursor: pointer;
+  }

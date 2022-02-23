@@ -1,0 +1,211 @@
+<div class="container">
+    <mat-card class="card">
+        <mat-card-header class="header">
+            <mat-card-title>{{realEstate?.name}}</mat-card-title>
+            <mat-card-subtitle>{{realEstate?.city}} - {{realEstate?.municipality}} - {{realEstate?.microlocation}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="content">
+            <div>
+                <div class="image">
+                    <div class="backForwardButton">
+                        <button mat-mini-fab color="primary" [disabled]="disableBack" (click)="nextImage(-1)"
+                            class="icon">
+                            <mat-icon>arrow_back_ios</mat-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <img class="images" src="{{currentImageSrc}}" alt="">
+                    </div>
+                    <div class="backForwardButton">
+                        <button mat-mini-fab color="primary" [disabled]="disableForward" (click)="nextImage(1)"
+                            class="icon">
+                            <mat-icon>arrow_forward_ios</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="tabs">
+                    <mat-tab-group mat-align-tabs="start" dynamicHeight="true">
+                        <mat-tab label="Characteristics">
+                            <form [formGroup]="form">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="terasa">Terasa</mat-checkbox>
+                                        </td>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="podrum">Podrum</mat-checkbox>
+                                        </td>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="internet">Internet
+                                            </mat-checkbox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="lodja">Lodja</mat-checkbox>
+                                        </td>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="garaža">Garaza</mat-checkbox>
+                                        </td>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="interfon">Interfon
+                                            </mat-checkbox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="francuski balkon">Franc.
+                                                balkon</mat-checkbox>
+                                        </td>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="basta">Sa bastom
+                                            </mat-checkbox>
+                                        </td>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="telefon">Telefon
+                                            </mat-checkbox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="lift">Lift</mat-checkbox>
+                                        </td>
+                                        <td>
+                                            <mat-checkbox color="primary" formControlName="klima">Klima</mat-checkbox>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </mat-tab>
+                        <mat-tab label="Description">
+                            <div class="description">
+                                <p>
+                                    {{realEstate?.about}}
+                                </p>
+                                <div class="avgPrice">
+                                    <label>{{'Average price per square meter on this location: ' |
+                                        uppercase}}</label>{{avgPricePerMeterOnLocation | number: '1.2-2'}}
+                                </div>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </div>
+            <div class="side">
+                <div>
+                    <mat-chip-list>
+                        <mat-chip color="primary" selected>
+                            TYPE: {{realEstate?.type | uppercase}}
+                        </mat-chip>
+                        <mat-chip color="primary" selected>
+                            AREA: {{realEstate?.area}}
+                        </mat-chip>
+                        <mat-chip color="primary" selected>
+                            ROOMS: {{realEstate?.rooms}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>AGENCY: {{agency?.name}}</td>
+                            <td>FLOOR: {{realEstate?.floor}}</td>
+                        </tr>
+                        <tr>
+                            <td>CONSTRUCTION YEAR: {{realEstate?.constructionYear | date : 'shortDate'}}</td>
+                            <td>TOTAL FLOORS: {{realEstate?.totalFloors}}</td>
+                        </tr>
+                        <tr>
+                            <td>STATE: {{realEstate?.state | uppercase}}</td>
+                            <td>PARKING: {{realEstate?.parking ? 'YES' : 'NO'}}</td>
+                        </tr>
+                        <tr>
+                            <td>HEATING: {{realEstate?.heating | uppercase}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="bottom">
+                    <span [ngClass]="avg ? 'red' : 'green'">
+                        <b>{{realEstate?.price | number: '1.2-2'}}</b>
+                        <mat-icon color="green">euro_symbol</mat-icon>
+                    </span>
+                    <button mat-raised-button color="primary">ADD TO FAVORITES</button>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <mat-accordion class="example-headers-align" multi>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            More Information
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Information about advertiser
+                            <mat-icon>account_circle</mat-icon>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="moreinfo">
+                        <table>
+                            <tr>
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>First name</mat-label>
+                                        <input matInput value="{{user.firstname}}" disabled="true">
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Last name</mat-label>
+                                        <input matInput value="{{user.lastname}}" disabled="true">
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Advertiser contact</mat-label>
+                                        <input matInput value="{{user.phone}}" disabled="true">
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr *ngIf="agency">
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Agency name</mat-label>
+                                        <input matInput value="{{agency?.name}}" disabled="true">
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Agency address</mat-label>
+                                        <input matInput value="{{agency?.address}}" disabled="true">
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Agency city</mat-label>
+                                        <input matInput value="{{agency?.city}}" disabled="true">
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr *ngIf="agency">
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>PIB</mat-label>
+                                        <input matInput value="{{agency?.pib}}" disabled="true">
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Agency phone</mat-label>
+                                        <input matInput value="{{agency?.phoneNumber}}" disabled="true">
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </mat-card-actions>
+    </mat-card>
+</div>

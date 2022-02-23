@@ -1,0 +1,28 @@
+<mat-tab-group 
+    mat-align-tabs="start"
+    [selectedIndex] = "activeTab"
+    >
+    <mat-tab label="Registration Orders">
+        <app-registration-order-list
+            [registrationOrders] = "registrationOrders"
+            (listChange)="reload($event)"
+        ></app-registration-order-list>
+    </mat-tab>
+    <mat-tab label="Users">
+        <app-user-list
+            [users] = "users"
+            (listChange)="reload($event)"
+        ></app-user-list>
+    </mat-tab>
+    <mat-tab label="Add agency">
+        <app-agency-tab></app-agency-tab>
+    </mat-tab>
+    <mat-tab label="My Info">
+        <app-my-information-tab
+        [user]="user"
+        ></app-my-information-tab>
+    </mat-tab>
+    <mat-tab label="Microlocations">
+
+    </mat-tab>
+  </mat-tab-group>

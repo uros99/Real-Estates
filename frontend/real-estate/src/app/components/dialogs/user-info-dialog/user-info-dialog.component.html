@@ -1,0 +1,78 @@
+<mat-card-header>
+    <div mat-card-avatar>
+        <img class="header-image" src="{{user?.profileImage}}" alt="">
+    </div>
+    <mat-card-title>{{user.firstname | uppercase}} {{user.lastname | uppercase}}</mat-card-title>
+    <mat-card-subtitle>
+        <label class="label">USER KIND </label>{{ user?.customerType | uppercase }}
+    </mat-card-subtitle>
+</mat-card-header>
+<mat-card-content>
+    <table>
+        <table>
+            <tr>
+                <td colspan="2">
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Username</mat-label>
+                        <input matInput type="text" value={{user.username}} disabled="true">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field style="width: 100%;" class="example-form-field" appearance="fill">
+                        <mat-label>City</mat-label>
+                        <input matInput type="text" value={{user.city}} disabled="true">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field style="width: 100%;" class="example-form-field" appearance="fill">
+                        <mat-label>Birth date</mat-label>
+                        <input matInput [matDatepicker]="datepicker" value="{{user.birthDate}}" disabled="true">
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker>
+                            <mat-datepicker-actions>
+                                <button mat-button matDatepickerCancel>Cancel</button>
+                                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Phone number</mat-label>
+                        <input matInput type="text" value="{{user.phoneNumber}}" disabled="true">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="text" value="{{user.email}}" disabled="true">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Agency</mat-label>
+                        <input matInput type="text" value="{{user.agency}}" disabled="true">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-form-field" appearance="fill">
+                        <mat-label>Licence ID</mat-label>
+                        <input matInput type="text" value="{{user.licenseId}}" disabled="true">
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+    </table>
+</mat-card-content>
+<mat-card-actions align="end">
+    <button mat-button color="primary" (click)="close()">CLOSE</button>
+</mat-card-actions>
+<ng-template #unknown>
+    <span class="unknown">{{ 'Unknown' | uppercase }}</span>
+</ng-template>

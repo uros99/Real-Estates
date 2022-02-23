@@ -1,0 +1,40 @@
+<mat-card class="card">
+    <mat-card-title>LOGIN</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form">
+            <table class="loginTable">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Username</mat-label>
+                            <input matInput type="text" formControlName="username">
+                            <button *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
+                            <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="example-form-field" appearance="fill">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" formControlName="password">
+                            <button *ngIf="password" matSuffix mat-icon-button aria-label="Clear" (click)="password=''">
+                            <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <re-captcha (resolved)="resolved($event)" required ></re-captcha>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="login()">LOGIN</button>
+        <button mat-raised-button (click)="register()">REGISTER</button>
+    </mat-card-actions>
+</mat-card>

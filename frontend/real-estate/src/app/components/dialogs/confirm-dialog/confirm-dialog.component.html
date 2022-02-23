@@ -1,0 +1,10 @@
+<mat-dialog-content>
+    <div class="container">
+      <h3 mat-dialog-title translate>{{text}}</h3>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button *ngIf="closeButton" mat-button (click)="closeDialog()" class='uppercase' cdkFocusInitial translate>{{closeButton}}</button>
+    <button *ngIf="confirmButton" mat-button (click)="confirmDelete()" class='uppercase' translate>{{confirmButton}}</button>
+  </mat-dialog-actions>
+  

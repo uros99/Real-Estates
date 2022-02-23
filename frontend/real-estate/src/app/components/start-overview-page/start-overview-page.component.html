@@ -1,0 +1,13 @@
+<div class="body">
+    <!-- <app-start-header></app-start-header> -->
+    <div class="container">
+        <app-login class="login"></app-login>
+        <div *ngFor="let realEstate of realEstates" class="realEstateDetails">
+            <app-real-estate-details
+            class="realEstateCard"
+            [realEstate] = "realEstate"
+            [moreDetailsFlag]="false"
+            ></app-real-estate-details>
+        </div>
+    </div>
+</div>
